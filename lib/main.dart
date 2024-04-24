@@ -1,3 +1,4 @@
+import 'package:cer_ojeda_ramirez/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'pages/login.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      home: Home(),
     );
   }
 }
