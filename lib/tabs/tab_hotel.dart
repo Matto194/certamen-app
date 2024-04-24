@@ -1,84 +1,113 @@
 import 'package:flutter/material.dart';
 
-// Clase para representar un hotel Continental
 class Hotel {
-  final String name;
-  final String location;
-  final int numRooms;
-  final String imagePath; // Propiedad para la ruta de la imagen
+    final String name;
+    final String location;
+    final int numRooms;
+    final String image;
 
-  Hotel({
-    required this.name,
-    required this.location,
-    required this.numRooms,
-    required this.imagePath, // Inicializa la propiedad imagePath
-  });
+    Hotel({
+        required this.name,
+        required this.location,
+        required this.numRooms,
+        required this.image,
+    });
 }
 
 class TabHotel extends StatefulWidget {
-  const TabHotel({super.key});
+    const TabHotel({super.key});
 
-  @override
-  _TabHotelState createState() => _TabHotelState();
+    @override
+    _TabHotelState createState() => _TabHotelState();
 }
 
 class _TabHotelState extends State<TabHotel> {
-  // Define una lista de hoteles Continental mutable con datos ficticios.
-  var _hotels = <Hotel>[
-    Hotel(
-      name: 'Continental de Nueva York',
-      location: 'Nueva York, Estados Unidos',
-      numRooms: 200,
-      imagePath: 'assets/images/continental-ny.jpg', // Ruta local de la imagen
-    ),
-    Hotel(
-      name: 'Continental de Casablanca',
-      location: 'Casablanca, Marruecos',
-      numRooms: 150,
-      imagePath: 'assets/images/continental-casablanca.jpg', // Ruta local de la imagen
-    ),
-    // Agrega más hoteles según sea necesario.
-  ];
+    var _hotels = <Hotel>[
+        Hotel(
+            name: 'Continental de Nueva York',
+            location: 'Nueva York, Estados Unidos',
+            numRooms: 200,
+            image: 'assets/images/continental-ny.png',
+        ),
+        Hotel(
+            name: 'Continental de Casablanca',
+            location: 'Casablanca, Marruecos',
+            numRooms: 150,
+            image: 'assets/images/continental-casablanca.png',
+        ),
+    ];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        itemCount: _hotels.length,
-        itemBuilder: (context, index) {
-          final hotel = _hotels[index];
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage(hotel.imagePath), // Usa AssetImage para cargar imágenes locales
-                  radius: 30, // Ajusta el tamaño del círculo
-                ),
-                title: Text(
-                  hotel.name,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Ubicación: ${hotel.location}'),
-                    Text('Número de habitaciones: ${hotel.numRooms}'),
-                  ],
-                ),
-                isThreeLine: true,
-              ),
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            backgroundColor: Color.fromARGB(255, 41, 25, 85),
+            body: ListView.builder(
+                itemCount: _hotels.length,
+                itemBuilder: (context, index) {
+                    final hotel = _hotels[index];
+                    return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                            color: Color.fromARGB(202, 255, 255, 255),
+                            elevation: 3,
+                            shape: BeveledRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                        // Cuadro de imagen cuadrada al lado izquierdo
+                                        Container(
+                                            width: 80,
+                                            height: 80,
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                                image: DecorationImage(
+                                                    image: AssetImage(hotel.image),
+                                                    fit: BoxFit.cover,
+                                                ),
+                                            ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        // Column para el contenido de texto
+                                        Expanded(
+                                            child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                    Text(
+                                                        hotel.name,
+                                                        style: TextStyle(
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 16,
+                                                            color: Color(0xFF4A7DDF),
+                                                        ),
+                                                    ),
+                                                    SizedBox(height: 5),
+                                                    Text(
+                                                        'Ubicación: ${hotel.location}',
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                        ),
+                                                    ),
+                                                    SizedBox(height: 5),
+                                                    Text(
+                                                        'Número de habitaciones: ${hotel.numRooms}',
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                        ),
+                                                    ),
+                                                ],
+                                            ),
+                                        ),
+                                    ],
+                                ),
+                            ),
+                        ),
+                    );
+                },
             ),
-          );
-        },
-      ),
-    );
-  }
+        );
+    }
 }
