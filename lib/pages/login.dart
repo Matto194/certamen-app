@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 41, 25, 85),
+        backgroundColor: Color.fromARGB(255, 48, 34, 87),
         appBar: AppBar(
           title: Text('Inicio de Sesión'),
         ),
@@ -22,8 +22,9 @@ class LoginPage extends StatelessWidget {
                 Title(
                     color: Color(0xFF7B10A1),
                     child: Text(
-                      'The table',
+                      'THE TABLE',
                       style: TextStyle(
+                        fontFamily: 'Bebas_Neue',
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF7B10A1),

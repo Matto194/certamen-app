@@ -21,7 +21,7 @@ class LoginForm extends StatelessWidget {
               }).toList(),
               decoration: InputDecoration(
                 labelText: 'Usuario',
-                labelStyle: TextStyle(color: Color(0xFF4A7DDF)),
+                labelStyle: TextStyle(color: Color(0xFF4A7DDF),),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Color(0xFF4A7DDF)),
                 ),
@@ -31,7 +31,7 @@ class LoginForm extends StatelessWidget {
                 print(value);
               }),
           TextFormField(
-            obscureText: true,
+            obscureText: false,
             decoration: InputDecoration(
                 labelText: 'contraseña',
                 labelStyle: TextStyle(color: Color(0xFF4A7DDF))),

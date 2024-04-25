@@ -21,10 +21,10 @@ class _HomeState extends State<Home> {
       body: _tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(
-            0xFF1F0A32), // Cambia el fondo del BottomNavigationBar a uno de tu paleta de colores
-        selectedItemColor: Color(0xFF7B10A1), // Color para el ítem seleccionado
+            0xFF1F0A32), 
+        selectedItemColor: Color(0xFF7B10A1), 
         unselectedItemColor:
-            Color(0xFF4A7DDF), // Color para los ítems no seleccionados
+            Color(0xFF4A7DDF), 
         selectedIconTheme: IconThemeData(
           opacity: 1.0,
           color: Color(0xFF7B10A1),
