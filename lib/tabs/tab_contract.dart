@@ -1,93 +1,151 @@
 import 'package:flutter/material.dart';
 
-// Clase para representar un contrato
 class Contract {
   final String state;
   final double amount;
   final String type;
   final String targetPerson;
-  final String imagePath; // Cambia la propiedad a imagePath
+  final String image;
 
   Contract({
     required this.state,
     required this.amount,
     required this.type,
     required this.targetPerson,
-    required this.imagePath, // Inicializa la propiedad imagePath
+    required this.image,
   });
 }
 
-class TabContract extends StatefulWidget {
-  const TabContract({super.key});
-
-  @override
-  _TabContractState createState() => _TabContractState();
-}
-
-class _TabContractState extends State<TabContract> {
-  // Define una lista de contratos mutable con datos ficticios.
-  var _contracts = <Contract>[
+class TabContract extends StatelessWidget {
+  final List<Contract> contracts = [
     Contract(
       state: 'Abierto',
       amount: 2000000,
       type: 'Asesinato',
       targetPerson: 'John Wick',
-      imagePath: 'assets/images/john-wick.jpg', // Cambia a la ruta local de la imagen
+      image: 'assets/images/john-wick.jpg',
     ),
     Contract(
       state: 'Cerrado',
       amount: 90000,
       type: 'Protección',
       targetPerson: 'Iosef Tarasov',
-      imagePath: 'assets/images/Iosef_Tarasov.jpg', // Cambia a la ruta local de la imagen
+      image: 'assets/images/Iosef_Tarasov.jpg',
     ),
-    // Agrega más contratos según sea necesario.
+    Contract(
+      state: 'Cerrado',
+      amount: 100000,
+      type: 'Asesinato',
+      targetPerson: 'Koji Shimazu',
+      image: 'assets/images/koji-shimazu.jpg',
+    ),
+    Contract(
+      state: 'Abierto',
+      amount: 80000,
+      type: 'Asesinato',
+      targetPerson: 'Mr. Nobody',
+      image: 'assets/images/Mr.Nobody.png',
+    ),
+    Contract(
+      state: 'Abierto',
+      amount: 13000,
+      type: 'Protección',
+      targetPerson: 'Mia',
+      image: 'assets/images/mia.png',
+    ),
+    Contract(
+      state: 'Abierto',
+      amount: 1111000000,
+      type: 'Asesinato',
+      targetPerson: 'Roronoa Zoro',
+      image: 'assets/images/zoro.png',
+    ),
+    Contract(
+      state: 'Cerrado',
+      amount: 70000,
+      type: 'Asesinato',
+      targetPerson: 'Marcus',
+      image: 'assets/images/marcus.png',
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
+      backgroundColor: Color.fromARGB(255, 41, 25, 85),
       body: ListView.builder(
-        itemCount: _contracts.length,
+        itemCount: contracts.length,
         itemBuilder: (context, index) {
-          final contract = _contracts[index];
+          final contract = contracts[index];
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(3.0),
             child: Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+              color: Color.fromARGB(202, 255, 255, 255),
+              elevation: 3,
+              shape: BeveledRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
               ),
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage(contract.imagePath), // Usa AssetImage para cargar imágenes locales
-                  radius: 30, // Ajusta el tamaño del círculo
-                ),
-                title: Text(
-                  'Persona Objetivo: ${contract.targetPerson}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                subtitle: Column(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Estado: ${contract.state}',
-                      style: TextStyle(
-                        color: contract.state == 'Abierto' ? Colors.green : Colors.red,
+                    CircleAvatar(
+                      backgroundImage: AssetImage(contract.image),
+                      radius: 40,
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Persona Objetivo: ${contract.targetPerson}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Color(0xFF7B10A1),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Estado: ${contract.state}',
+                                style: TextStyle(
+                                  color: contract.state == 'Abierto'
+                                      ? Color(0xFF4A7DDF)
+                                      : Color(0xFF0A0615),
+                                ),
+                              ),
+                              Icon(
+                                contract.state == 'Abierto'
+                                    ? Icons.lock_open
+                                    : Icons.lock,
+                                color: contract.state == 'Abierto'
+                                    ? Color(0xFF4A7DDF)
+                                    : Color(0xFF0A0615),
+                                size: 20,
+                              ),
+                            ],
+                          ),
+                          Text(
+                            'Monto: \$${contract.amount.toStringAsFixed(0)}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF161079),
+                            ),
+                          ),
+                          Text(
+                            'Tipo: ${contract.type}',
+                            style: TextStyle(
+                              color: Color(0xFF1F0A32),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Text(
-                      'Monto: \$${contract.amount.toStringAsFixed(0)}',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text('Tipo: ${contract.type}'),
                   ],
                 ),
-                isThreeLine: true,
               ),
             ),
           );

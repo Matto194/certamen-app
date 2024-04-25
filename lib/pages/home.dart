@@ -14,21 +14,38 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   List<Widget> _tabs = [TabContract(), TabService(), TabHotel()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        fixedColor: Colors.black,
-        selectedIconTheme: IconThemeData(opacity: 1.0, color: Colors.black),
-        unselectedIconTheme: IconThemeData(opacity: 0.5),
+        backgroundColor: Color(
+            0xFF1F0A32), // Cambia el fondo del BottomNavigationBar a uno de tu paleta de colores
+        selectedItemColor: Color(0xFF7B10A1), // Color para el ítem seleccionado
+        unselectedItemColor:
+            Color(0xFF4A7DDF), // Color para los ítems no seleccionados
+        selectedIconTheme: IconThemeData(
+          opacity: 1.0,
+          color: Color(0xFF7B10A1),
+        ),
+        unselectedIconTheme: IconThemeData(
+          opacity: 0.5,
+          color: Color(0xFF4A7DDF),
+        ),
         items: [
           BottomNavigationBarItem(
-              icon: Icon(MdiIcons.briefcase), label: 'Contratos'),
+            icon: Icon(MdiIcons.briefcase),
+            label: 'Contratos',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(MdiIcons.vacuum), label: 'Servicios'),
+            icon: Icon(MdiIcons.vacuum),
+            label: 'Servicios',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(MdiIcons.roomService), label: 'Hoteles'),
+            icon: Icon(MdiIcons.roomService),
+            label: 'Hoteles',
+          ),
         ],
         currentIndex: _currentIndex,
         onTap: (index) {
